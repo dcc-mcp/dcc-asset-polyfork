@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: vx-org/vx@2589de6521c6bc07cd174b2a4089dd63f4df0fc1 # v0.9.37
+        with:
+          version: '0.9.37'
+      - name: Offline regression and distribution layout
+        run: vx just check
+  discovery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: vx-org/vx@2589de6521c6bc07cd174b2a4089dd63f4df0fc1 # v0.9.37
+        with:
+          version: '0.9.37'
+      - name: Installer discovery only (no installation)
+        run: vx just discover

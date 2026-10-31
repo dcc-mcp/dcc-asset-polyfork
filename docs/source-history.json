@@ -1,0 +1,66 @@
+{
+  "source_repository": "https://github.com/dcc-mcp/dcc-mcp-agent-plugins",
+  "source_commit": "fd6064c7d7beb86f5f187f129fde04af3b239b99",
+  "original_commits": [
+    "0789484c97da66b37cc42ba0c1d410ecc54e778b",
+    "fd6064c7d7beb86f5f187f129fde04af3b239b99"
+  ],
+  "files": [
+    {
+      "source_path": "skills/polyfork-assets/LICENSE",
+      "destination_path": "skill/polyfork-assets/LICENSE",
+      "source_blob": "8f0f47b8b88a4810ea722046b7297e0be940c032"
+    },
+    {
+      "source_path": "skills/polyfork-assets/SKILL.md",
+      "destination_path": "skill/polyfork-assets/SKILL.md",
+      "source_blob": "ddd000ebe7d62c7c21bc672a85b4c5b2ffe7814c"
+    },
+    {
+      "source_path": "skills/polyfork-assets/references/native-validation.md",
+      "destination_path": "skill/polyfork-assets/references/native-validation.md",
+      "source_blob": "03c248466aab8ee9e2eb90d9d7aecbf4e2b4485c"
+    },
+    {
+      "source_path": "skills/polyfork-assets/references/readback-fixture.json",
+      "destination_path": "skill/polyfork-assets/references/readback-fixture.json",
+      "source_blob": "449aeb04b180305750a58ad1cbdab1e458a55cd2"
+    },
+    {
+      "source_path": "skills/polyfork-assets/references/scene-plan.json",
+      "destination_path": "skill/polyfork-assets/references/scene-plan.json",
+      "source_blob": "335410b1b4da5d662956c650c6db449c018970b5"
+    },
+    {
+      "source_path": "skills/polyfork-assets/references/sources.md",
+      "destination_path": "skill/polyfork-assets/references/sources.md",
+      "source_blob": "b6b36e35b4402715e231278b0ffc60f6623add44"
+    },
+    {
+      "source_path": "skills/polyfork-assets/scripts/blender_acceptance.py",
+      "destination_path": "skill/polyfork-assets/scripts/blender_acceptance.py",
+      "source_blob": "c355a0e57c686b3049734b79cd292b5bff311a0f"
+    },
+    {
+      "source_path": "skills/polyfork-assets/scripts/check_readback.py",
+      "destination_path": "skill/polyfork-assets/scripts/check_readback.py",
+      "source_blob": "93492e6591c1e3c18371ddeec1c9528a84ce538c"
+    },
+    {
+      "source_path": "skills/polyfork-assets/scripts/polyfork_assets.py",
+      "destination_path": "skill/polyfork-assets/scripts/polyfork_assets.py",
+      "source_blob": "e8eb728634f539f1ae89c29c2119a863dd32a0ff"
+    },
+    {
+      "source_path": "tests/test_polyfork_acquisition.py",
+      "destination_path": "tests/test_polyfork_acquisition.py",
+      "source_blob": "dffaac004de7f16c13dd36de3d115b1350c97b83"
+    },
+    {
+      "source_path": "tests/test_polyfork_prototype.py",
+      "destination_path": "tests/test_polyfork_prototype.py",
+      "source_blob": "c28b66d00041a730dc3818f05e7dba91415b07a6"
+    }
+  ],
+  "adaptations": "Independent layout, standalone test contracts and source links; original license retained. No provider payload migrated."
+}
