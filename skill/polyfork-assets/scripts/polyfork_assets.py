@@ -128,8 +128,11 @@ def acquire(asset_id, project):
     lock = cache / ".lock"
     plain(lock)
     token = uuid.uuid4().hex
-    with lock.open("x", encoding="utf-8") as output:
-        output.write(token)
+    try:
+        with lock.open("x", encoding="utf-8") as output:
+            output.write(token)
+    except FileExistsError as error:
+        raise ValueError("project acquisition is locked; inspect .polyfork/.lock ownership before removal") from error
     temporary = None
     try:
         manifest_path = cache / "manifest.json"
@@ -199,8 +202,9 @@ def acquire(asset_id, project):
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
-        if lock.read_text(encoding="utf-8") == token:
-            lock.unlink()
+        with contextlib.suppress(FileNotFoundError):
+            if lock.read_text(encoding="utf-8") == token:
+                lock.unlink()
 
 
 def main():

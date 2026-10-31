@@ -123,7 +123,7 @@ class PolyforkAcquisitionTests(unittest.TestCase):
         lock = cache / ".lock"
         lock.write_text("other-writer")
         with patch.object(assets, "request") as fetch:
-            with self.assertRaises(FileExistsError):
+            with self.assertRaisesRegex(ValueError, "inspect .polyfork/.lock ownership"):
                 assets.acquire(ASSET_ID, self.project)
         fetch.assert_not_called()
         self.assertEqual(lock.read_text(), "other-writer")
@@ -135,6 +135,24 @@ class PolyforkAcquisitionTests(unittest.TestCase):
                 assets.acquire(ASSET_ID, self.project)
         fetch.assert_not_called()
         self.assertEqual(unmanaged.read_bytes(), self.body)
+
+    def test_removed_lock_does_not_replace_the_original_acquisition_error(self):
+        """Cleanup tolerates a vanished lock and preserves someone else's token."""
+        lock = self.project / ".polyfork/.lock"
+        for replacement in (None, "other-writer"):
+            with self.subTest(replacement=replacement):
+                def fail(*args):
+                    if replacement is None:
+                        lock.unlink()
+                    else:
+                        lock.write_text(replacement)
+                    raise ValueError("original metadata failure")
+
+                with patch.object(assets, "request", side_effect=fail):
+                    with self.assertRaisesRegex(ValueError, "original metadata failure"):
+                        assets.acquire(ASSET_ID, self.project)
+                if replacement is not None:
+                    self.assertEqual(lock.read_text(), replacement)
 
     def test_invalid_glb_and_external_resources_never_enter_the_cache(self):
         """Importable files must be actual containers without outside dependencies."""
